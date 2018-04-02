@@ -46,8 +46,28 @@ dbpath = /db/comments.db
 ; or SSL connections. There is no wildcard to allow
 ; any domain.
 host = https://www.example.com/
+notify = smtp
+
 [server]
 listen = http://0.0.0.0:8080/
+
+[guard]
+enabled = true
+ratelimit = 2
+direct-reply = 30
+reply-to-self = false
+require-author = true
+require-email = true
+
+[smtp]
+host = smtp.gmail.com
+port = 465
+security = ssl
+username = <username>
+password = <password>
+to = <email address>
+from = "ISSO Comment System" <no-reply@example.com>
+timeout = 10
 
 # cat /etc/nginx/sites-available/isso
 ...
@@ -105,7 +125,9 @@ Paste the script code below in your website:
 
 Done.
 
-#### P.S.
+---
+
+#### Isso in subdirectory
 
 We can also host Isso system in a subdirectory `isso` but not a dedicated domain, like `www.example.com/isso`, in this case, we need to update the Nginx configuration this way:
 
@@ -149,3 +171,33 @@ And the script code:
 <section id="isso-thread"></section>
 <noscript>请开启 JavaScript 查看 <a href="https://posativ.org/isso/" rel="nofollow">isso 评论系统的内容</a>。</noscript>
 ```
+
+#### How to delete comments with commands?
+
+```
+# sudo apt-get update
+...
+# sudo apt-get install sqlite sqlite3 libsqlite3-dev
+...
+# cd /mnt/docker/isso/db/
+# sqlite3
+sqlite> ATTACH 'comments.db' as isso;
+sqlite> .tables
+isso.comments     isso.preferences  isso.threads
+sqlite>
+sqlite> .show
+...
+sqlite> .headers ON
+sqlite> .mode column
+sqlite> SELECT * from isso.comments;
+...
+sqlite> SELECT * from isso.threads;
+...
+sqlite> SELECT id,author,text from isso.comments;
+...
+sqlite> DELETE FROM isso.comments WHERE id=87;
+...
+sqlite> .quit
+```
+
+Reference: [Command Line Shell For SQLite](https://www.sqlite.org/cli.html)
