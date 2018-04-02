@@ -8,8 +8,11 @@ Isso is a commenting server similar to Disqus. More info on the [official websit
 #### Docker image
 Docker Hub: [wonderfall/isso](https://hub.docker.com/r/wonderfall/isso/)
 
-Docker Pull Command:  
-`docker pull wonderfall/isso`
+Docker Pull Command:
+
+```
+docker pull wonderfall/isso
+```
 
 #### Features
 - Based on Alpine Linux 3.3.
@@ -67,28 +70,35 @@ server {
 ```
 
 Run the Isso Docker Image as a Container:  
-`docker run --name isso -v /mnt/docker/isso/config:/config -v /mnt/docker/isso/db:/db -p 8080:8080 --rm -d wonderfall/isso`
 
-Test Isso:  
-`https://comments.example.com/js/embed.min.js`
+```
+docker run --name isso -v /mnt/docker/isso/config:/config -v /mnt/docker/isso/db:/db -p 8080:8080 --rm -d wonderfall/isso
+```
+
+Test Isso:
+
+```
+https://comments.example.com/js/embed.min.js
+```
 
 Paste the script code below in your website:
+
 ```
 <script data-isso="//comments.example.com/"
-data-isso-css="true"
-data-isso-lang="zh"
-data-isso-reply-to-self="false"
-data-isso-require-author="true"
-data-isso-require-email="true"
-data-isso-max-comments-top="10"
-data-isso-max-comments-nested="5"
-data-isso-reveal-on-click="5"
-data-isso-avatar="true"
-data-isso-avatar-bg="#f0f0f0"
-data-isso-avatar-fg="#9abf88 #5698c4 #e279a3 #9163b6 ..."
-data-isso-vote="true"
-data-vote-levels=""
-src="//comments.example.com/js/embed.min.js"></script>
+  data-isso-css="true"
+  data-isso-lang="zh"
+  data-isso-reply-to-self="false"
+  data-isso-require-author="true"
+  data-isso-require-email="true"
+  data-isso-max-comments-top="10"
+  data-isso-max-comments-nested="5"
+  data-isso-reveal-on-click="5"
+  data-isso-avatar="true"
+  data-isso-avatar-bg="#f0f0f0"
+  data-isso-avatar-fg="#9abf88 #5698c4 #e279a3 #9163b6 ..."
+  data-isso-vote="true"
+  data-vote-levels=""
+  src="//comments.example.com/js/embed.min.js"></script>
 <section id="isso-thread"></section>
 <noscript>请开启 JavaScript 查看 <a href="https://posativ.org/isso/" rel="nofollow">isso 评论系统的内容</a>。</noscript>
 ```
@@ -119,22 +129,23 @@ server {
 ```
 
 And the script code:
+
 ```
-<script data-isso="//www.apkjam.com/isso/"
-data-isso-css="true"
-data-isso-lang="zh"
-data-isso-reply-to-self="false"
-data-isso-require-author="true"
-data-isso-require-email="true"
-data-isso-max-comments-top="10"
-data-isso-max-comments-nested="5"
-data-isso-reveal-on-click="5"
-data-isso-avatar="true"
-data-isso-avatar-bg="#f0f0f0"
-data-isso-avatar-fg="#9abf88 #5698c4 #e279a3 #9163b6 ..."
-data-isso-vote="true"
-data-vote-levels=""
-src="//www.apkjam.com/isso/js/embed.min.js"></script>
+<script data-isso="//www.example.com/isso/"
+  data-isso-css="true"
+  data-isso-lang="zh"
+  data-isso-reply-to-self="false"
+  data-isso-require-author="true"
+  data-isso-require-email="true"
+  data-isso-max-comments-top="10"
+  data-isso-max-comments-nested="5"
+  data-isso-reveal-on-click="5"
+  data-isso-avatar="true"
+  data-isso-avatar-bg="#f0f0f0"
+  data-isso-avatar-fg="#9abf88 #5698c4 #e279a3 #9163b6 ..."
+  data-isso-vote="true"
+  data-vote-levels=""
+  src="//www.example.com/isso/js/embed.min.js"></script>
 <section id="isso-thread"></section>
 <noscript>请开启 JavaScript 查看 <a href="https://posativ.org/isso/" rel="nofollow">isso 评论系统的内容</a>。</noscript>
 ```
