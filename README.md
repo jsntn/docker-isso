@@ -95,6 +95,26 @@ Run the Isso Docker Image as a Container:
 docker run --name isso -v /mnt/docker/isso/config:/config -v /mnt/docker/isso/db:/db -p 8080:8080 --rm -d wonderfall/isso
 ```
 
+Get started with Docker Compose:
+
+```
+# pwd
+/var/www/dockerize_isso
+# ls
+config  db  docker-compose.yml
+# cat docker-compose.yml
+isso:
+  image: wonderfall/isso
+  environment:
+    - GID=1000
+    - UID=1000
+  ports:
+    - "8080:8080"
+  volumes:
+    - ./config:/config
+    - ./db:/db
+```
+
 Test Isso:
 
 ```
